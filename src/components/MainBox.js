@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+
 import MenuBar from "./MenuBar";
 import { Profile, Photos, Cocktails, Pokemon } from "./pages";
 
@@ -11,13 +12,23 @@ function MainBox() {
     - Which component should have methods to control state? 
     - Where should these methods be called?
   */
+  // function handleActiveTab(component) {
+  //   setActiveTab(component)
+  // }
 
-  const detailsToDisplay = <div>Hi, I'm a div!</div>;
+  const [activeTab, setActiveTab] = useState("")
+  
+  // const detailsToDisplay = <div>Hi, I'm a div!</div>;
+
+  const displayArr = { profile: <Profile />, photos: <Photos />, cocktails: <Cocktails />, pokemon: <Pokemon />}
+
+
 
   return (
     <div>
-      <MenuBar />
-      {detailsToDisplay}
+      <MenuBar setActiveTab = {setActiveTab} activeTab = {activeTab} />
+      
+      {displayArr[activeTab]}
     </div>
   );
 }
